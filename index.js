@@ -42,9 +42,23 @@ console.log("Original Object:", obj)
  * EXAMPLE
  * findLargestInteger([{ integer: 1 }, { integer: 3 }, { integer: 2 }]) // returns 3
  */
+let intArray = [{ integer: 945 }, { integer: 54 }, { integer: 780 }, { integer: 1 }]
+
 function findLargestInteger(integers) {
   // ✨ implement
+  let maxNum = 0;
+
+  integers.forEach((element) => {
+    for (const [key, value] of Object.entries(element)) {
+      if (value > maxNum) {
+        maxNum = value;
+      }
+    }
+  })
+  return maxNum;
 }
+
+console.log(findLargestInteger(intArray))
 
 class Counter {
   /**
