@@ -230,9 +230,17 @@ console.log(focus.drive(1)) // returns 600 (no distance driven as tank is empty)
  * })
  */
 
-function isEvenNumberAsync(number) {
+async function isEvenNumberAsync(number) {
   // ✨ implement
+  if (Number.isNaN(number) || typeof (number) !== 'number') {
+    throw TypeError("number must be a number")
+  }
+
+  const result = (number % 2 === 0) ? true : false
+  return result
 }
+
+isEvenNumberAsync('foo').then((res) => { console.log("Response = ", res) }).catch((err) => console.log(err.message))
 
 module.exports = {
   trimProperties,
