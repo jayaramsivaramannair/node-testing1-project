@@ -24,7 +24,7 @@ console.log("Original Object:", obj)
  *
  * EXAMPLE
  * trimPropertiesMutation({ name: '  jane  ' }) // returns the object mutated in place { name: 'jane' }
- */
+ **/
 function trimPropertiesMutation(obj) {
   // ✨ implement
   Object.keys(obj).forEach((key) => { obj[key] = obj[key].trim() })
@@ -134,6 +134,9 @@ class Car {
     this.odometer = 0 // car initilizes with zero miles
     this.tank = tankSize // car initiazes full of gas
     // ✨ initialize whatever other properties are needed
+    this.name = name
+    this.mpg = mpg
+    this.currentFuel = this.tank
   }
 
   /**
@@ -151,6 +154,20 @@ class Car {
    */
   drive(distance) {
     // ✨ implement
+    let possibleDistance = this.currentFuel * this.mpg
+
+    if (distance <= possibleDistance) {
+
+      this.odometer += distance // Increases odometer reading
+      this.currentFuel -= distance / this.mpg // Reduces fuel level
+
+    } else {
+
+      this.odometer += possibleDistance
+      this.currentFuel -= possibleDistance / this.mpg
+    }
+
+    return this.odometer
   }
 
   /**
@@ -163,11 +180,35 @@ class Car {
    * focus.drive(600) // returns 600
    * focus.drive(1) // returns 600 (no distance driven as tank is empty)
    * focus.refuel(99) // returns 600 (tank only holds 20)
-   */
+   **/
   refuel(gallons) {
     // ✨ implement
+    let fuelSpace = (this.tank === this.currentFuel) ? 0 : (this.tank - this.currentFuel) //Checks if there is any space for refuelling
+
+    if (gallons > fuelSpace) { //Refueling is higher than tank capacity
+      this.currentFuel = this.tank //Fills the tank to full capacity
+
+    } else if (gallons <= fuelSpace) {
+      this.currentFuel += gallons //Replenish the current tank level with gallons filled
+    }
+
+    return this.currentFuel * this.mpg
   }
 }
+
+/* Test for drive method in Car
+const focus = new Car('focus', 20, 30)
+console.log(focus.drive(100))
+console.log(focus.drive(100))
+console.log(focus.drive(100))
+console.log(focus.drive(200))
+console.log(focus.drive(200)) //Stops updating after 100 miles as the tank is empty
+console.log(focus.drive(200)) // Empty tank. Car cannot be driven
+*/
+
+const focus = new Car('focus', 20, 30)
+console.log(focus.drive(600)) // returns 600
+console.log(focus.drive(1)) // returns 600 (no distance driven as tank is empty)
 
 /**
  * [Exercise 7] Asynchronously resolves whether a number is even
@@ -188,6 +229,7 @@ class Car {
  *    // error.message is "number must be a number"
  * })
  */
+
 function isEvenNumberAsync(number) {
   // ✨ implement
 }
