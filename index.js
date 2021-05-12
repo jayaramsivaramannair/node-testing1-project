@@ -104,6 +104,7 @@ class Seasons {
    */
   constructor() {
     // ✨ initialize whatever properties are needed
+    this.nextSeason = "spring"
   }
 
   /**
@@ -120,8 +121,33 @@ class Seasons {
    */
   next() {
     // ✨ implement
+    switch (this.nextSeason) {
+      case 'winter':
+        this.nextSeason = 'spring';
+        break;
+      case 'spring':
+        this.nextSeason = 'summer';
+        break;
+      case 'summer':
+        this.nextSeason = 'fall';
+        break;
+      case 'fall':
+        this.nextSeason = 'winter';
+        break;
+    }
+    return this.nextSeason;
   }
 }
+
+const seasons = new Seasons()
+console.log(seasons.next()) // returns 'summer'
+console.log(seasons.next()) // returns 'fall'
+console.log(seasons.next()) // returns 'winter'
+console.log(seasons.next()) // returns 'spring'
+console.log(seasons.next()) // returns 'summer'
+console.log(seasons.next()) // returns 'fall'
+console.log(seasons.next()) // returns 'winter'
+console.log(seasons.next()) // returns 'spring'
 
 class Car {
   /**

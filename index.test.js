@@ -8,6 +8,7 @@ describe('[Exercise 1] trimProperties', () => {
     // EXAMPLE
     const actual = utils.trimProperties(input)
     expect(actual).toEqual(expected)
+    expect({}).toEqual({})
   })
 
   test('[2] returns a copy, leaving the original object intact', () => {
@@ -68,12 +69,53 @@ describe('[Exercise 5] Seasons', () => {
   beforeEach(() => {
     seasons = new utils.Seasons() // each test must start with fresh seasons
   })
-  test.todo('[9] the FIRST call of seasons.next returns "summer"')
-  test.todo('[10] the SECOND call of seasons.next returns "fall"')
-  test.todo('[11] the THIRD call of seasons.next returns "winter"')
-  test.todo('[12] the FOURTH call of seasons.next returns "spring"')
-  test.todo('[13] the FIFTH call of seasons.next returns again "summer"')
-  test.todo('[14] the 40th call of seasons.next returns "spring"')
+  test('[9] the FIRST call of seasons.next returns "summer"', () => {
+    expect(seasons.next()).toEqual('summer')
+  })
+
+  test('[10] the SECOND call of seasons.next returns "fall"', () => {
+    let testCalls = 2 - 1
+    while (testCalls > 0) {
+      seasons.next()
+      testCalls -= 1
+    }
+    expect(seasons.next()).toEqual('fall')
+  })
+  test('[11] the THIRD call of seasons.next returns "winter"', () => {
+    let testCalls = 3 - 1
+    while (testCalls > 0) {
+      seasons.next()
+      testCalls -= 1
+    }
+    expect(seasons.next()).toEqual('winter')
+  })
+  test('[12] the FOURTH call of seasons.next returns "spring"', () => {
+    let testCalls = 4 - 1
+    while (testCalls > 0) {
+      seasons.next()
+      testCalls -= 1
+    }
+    expect(seasons.next()).toEqual('spring')
+  })
+
+  test('[13] the FIFTH call of seasons.next returns again "summer"', () => {
+    let testCalls = 5 - 1
+    while (testCalls > 0) {
+      seasons.next()
+      testCalls -= 1
+    }
+    expect(seasons.next()).toEqual('summer')
+  })
+
+  test('[14] the 40th call of seasons.next returns "spring"', () => {
+    let testCalls = 40 - 1
+    while (testCalls > 0) {
+      seasons.next()
+      testCalls -= 1
+    }
+
+    expect(seasons.next()).toEqual('spring')
+  })
 })
 
 describe('[Exercise 6] Car', () => {
